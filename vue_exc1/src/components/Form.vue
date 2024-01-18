@@ -10,7 +10,7 @@
  }
  .input-area{
     display: flex;
-    /* flex-direction: column; */
+    /* / flex-direction: column; / */
     margin:10px auto;
     width: fit-content;
  }
@@ -146,20 +146,74 @@
 
     <div class="table-section">
       <el-table :data="tableData" height="250" style="width: 100%">
+        <el-table-column prop="id" label="id" />
         <el-table-column prop="name" label="Name" />
         <el-table-column prop="username" label="Username" />
         <el-table-column prop="gender" label="Gender" />
         <el-table-column prop="address" label="Address" />
         <el-table-column prop="country" label="Country" />
+        <el-table-column label="Actions">
+          <template #default="{ row }">
+            <el-button type="text" @click="editRow(row)">Edit</el-button>
+            <el-button type="text" @click="removeRow(row)">Delete</el-button>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
+    <el-dialog v-model="editModalVisible" title="Edit Entry">
+      <el-form ref="editForm">
+
+        <el-form-item label="Name" prop="name">
+          <el-input v-model="editFormData.name"></el-input>
+        </el-form-item>
+        <el-form-item label="Username" prop="username">
+          <el-input v-model="editFormData.username"></el-input>
+        </el-form-item>
+        <el-form-item label="Gender" prop="gender">
+          <el-radio-group v-model="editFormData.gender">
+            <el-radio label="male">Male</el-radio>
+            <el-radio label="female">Female</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="Address" prop="address">
+          <el-input v-model="editFormData.address"></el-input>
+        </el-form-item>
+        <el-form-item label="Country" prop="country">
+          <el-select v-model="editFormData.country" placeholder="Select">
+            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="saveChanges">Save Changes</el-button>
+          <el-button @click="closeEditModal">Cancel</el-button>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
   </div>
 </template>
 
 <script setup>
 import { ref, reactive } from 'vue';
 import { required } from '@vuelidate/validators';
+
 import useVuelidate from "@vuelidate/core"
+
+
+const editModalVisible = ref(false);
+const editFormData = ref({});
+
+
+
+// const editFormRef = ref(null);
+
+
+// const editRules = {
+//   input : {required},
+//   val : {required},
+//   radio2 : { required },
+//   textarea2 : { required },
+//   value : { required },
+// };
 
 const formData = reactive({
   input:"",
@@ -192,12 +246,58 @@ const options = [
 
 const tableData = ref([]);
 
+
+const closeEditModal = () => {
+  editFormData.value = {};
+  editModalVisible.value = false;
+};
+
+
+
+const editRow = (row) => {  
+  editFormData.value = { ...row };
+  editModalVisible.value = true;
+};
+
+const removeRow = (row) => {
+  const index = tableData.value.indexOf(row);
+  tableData.value.splice(index, 1);
+};
+
+const saveChanges = () => {
+  // Find the index of the row being edited by its ID
+  const index = tableData.value.findIndex(row => row.id === editFormData.value.id);
+
+  // Replace the existing row with the changes
+  if (index !== -1) {
+    // Update the properties of the found row
+    tableData.value[index].name = editFormData.value.name;
+    tableData.value[index].username = editFormData.value.username;
+    tableData.value[index].gender = editFormData.value.gender;
+    tableData.value[index].address = editFormData.value.address;
+    tableData.value[index].country = editFormData.value.country;
+  }
+
+  // Clear the form data and hide the edit modal
+  editFormData.value = {};
+  editModalVisible.value = false;
+};
+
+function generateRandomId() {
+  const randomNumber = Math.floor(Math.random() * 1000000);
+  const randomString = randomNumber.toString();
+  const timestamp = new Date().getTime();
+  const randomId = `${timestamp}${randomString}`;
+  return randomId;
+}
+
 const submitForm = async() => {
      const result = await v$.value.$validate();
      
      if(result){
   
        tableData.value.push({
+        id:generateRandomId(),
         name: formData.input,
         username: formData.val,
         gender: formData.radio2,
@@ -221,5 +321,3 @@ const submitForm = async() => {
     
 }
 </script>
-
-

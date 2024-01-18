@@ -48,25 +48,3 @@ function calculateAverage (arr) {
 const value = calculateAverage(arrayOfObjectsForGroupAndAverage)
 console.log(value)
 
-// function calculateAverage(arr) {
-//     let result = {};
-
-//     arr.forEach(item => {
-//         result[item.category] = result[item.category] || { sum: 0, count: 0 };
-
-//         result[item.category].sum += item.value;
-//         result[item.category].count++;
-//         result[item.category].average = result[item.category].sum / result[item.category].count;
-//     });
-
-//     return result;
-// }
-
-// const arrayOfObjectsForGroupAndAverage = [
-//     { category: 'A', value: 20 },
-//     { category: 'B', value: 30 },
-//     { category: 'A', value: 25 }
-// ];
-
-// const value = calculateAverage(arrayOfObjectsForGroupAndAverage);
-// console.log(value);
