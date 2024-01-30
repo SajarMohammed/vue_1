@@ -20,8 +20,8 @@
 
 .list {
   text-align: center;
-  padding: 10px 20px;
-  margin:10px 0px 10px 80px;
+  padding: 10px 10px;
+  margin:10px 0px 10px 50px;
    /* flex: 1; */
   
    
@@ -65,6 +65,12 @@
                 },
                 {
                     id:4, title: "Contact", url :"/contact"
+                },
+                {
+                    id:5, title: "Upload", url :"/upload"
+                },
+                {
+                    id:4, title: "Display", url :"/display"
                 },
             ]
         }
