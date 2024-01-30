@@ -1,12 +1,15 @@
-<style>
+<style scoped>
  .main{
   display: flex;
   flex-direction:column;
  }
  .input-section{
-  background-color: burlywood;
+  background-color: bisque;
   height: 70vh;
-
+  width: 80vw;
+  margin: 20px auto;
+  border-radius: 12px;
+  border:1px solid grey;
  }
  .input-area{
     display: flex;
@@ -23,13 +26,22 @@
     gap: 8px;
     
   }
-  /* .error{
-    color:crimson
-  } */
+  label{
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 2px;
+  }
 
  .inp{ 
   width:150px;
   height: 30px;
+  border: 1px solid grey;
+  border-radius: 8px;
+ }
+ .inp ::placeholder{
+  font-family: 'Courier New', Courier, monospace;
+  padding-left: 6px;
+  letter-spacing: 3px;
  }
  .check{
   display: flex;
@@ -45,7 +57,8 @@
   justify-content: center;
   width: fit-content;
   margin: 10px auto;
-  gap:20px
+  gap:20px;
+  border:1px solid grey
  }
  .select-field{
   display: flex;
@@ -53,8 +66,10 @@
   align-items: center;
   width: fit-content;
   margin: 5px auto;
-  gap:20px
+  gap:20px;
+  
  }
+
  .text-area{
    margin: 15px 60px;
     display: flex;
@@ -65,13 +80,26 @@
  }
  .texty{
   width:200px;
+  border:1px solid grey
+ }
+ .texty ::placeholder{
+  font-family: 'Courier New', Courier, monospace;
+  padding-left: 6px;
+  letter-spacing: 3px;
  }
  .btn{
   display: flex;
   align-items: center;
-  width: fit-content;
-  margin: 5px auto;
-  gap:20px
+  width: 150px;
+  margin: 20px auto;
+  height:40px;
+  padding:auto;
+  background-color: black !important;
+  font-size: 16px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  letter-spacing: 2px;
+  border-radius: 7px;
  }
 </style>
 <template>
@@ -83,13 +111,13 @@
           <div class="each-input">
             <label for="input1">Name :</label>
             
-            <el-input v-model="formData.input" placeholder="Please input" clearable class="inp" id="input1" />
+            <el-input v-model="formData.input" placeholder="Name..." clearable class="inp" id="input1" />
              <span v-for="error in v$.input.$errors" :key="error.$uid" class="error">
             {{ error.$message }}</span>
           </div>
           <div class="each-input">
             <label for="input2">Username :</label>
-            <el-input v-model="formData.val" placeholder="Please input" clearable class="inp" id="input2" />
+            <el-input v-model="formData.val" placeholder="Username..." clearable class="inp" id="input2" />
             <span v-for="error in v$.val.$errors" :key="error.$uid" class="error">
             {{ error.$message }}</span>
           </div>
@@ -114,7 +142,7 @@
             v-model="formData.textarea2"
             :autosize="{ minRows: 2, maxRows: 4 }"
             type="textarea"
-            placeholder="Please input"
+            placeholder="Address..."
             id="textarea1"
             class="texty"
           />
@@ -124,7 +152,7 @@
 
         <div class="select-field">
           <label>Country : </label>
-          <el-select v-model="formData.value" class="m-2" placeholder="select">
+          <el-select v-model="formData.value" class="m-2 slct" placeholder="select">
             <el-option
               v-for="item in options"
               :key="item.value"
@@ -138,7 +166,7 @@
         </div>
 
         <div class="form-actions">
-          <el-button type="primary" @click="submitForm" class="btn">Submit</el-button>
+          <el-button @click="submitForm" class="btn">Submit</el-button>
         </div>
         
       </el-form>
