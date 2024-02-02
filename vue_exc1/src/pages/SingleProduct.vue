@@ -6,10 +6,8 @@
   margin: 20px auto;
   gap: 20px;
 }
-
 .first-sec {
   width: 40%;
-
 }
 
 .first-sec img {
@@ -17,7 +15,6 @@
   height: 100%;
   object-fit: contain;
 }
-
 .second-sec {
   flex: 1;
   display: flex;
@@ -62,7 +59,6 @@
         <div class="second-sec">
               <h1>A Pack of Vegies</h1>
               <p>Experience the goodness of nature with our Fresh and Healthy Vegetable Pack! Packed with an assortment of vibrant, farm-fresh vegetables, this pack is your ticket to a nutritious and delicious culinary journey.</p>
-              
               <div class="qty">
                 <button @click="decrement"> - </button>
                 <span>{{ count }}</span>
@@ -75,12 +71,11 @@
         <button>Back</button>
     </router-link>
     </div>
-  
 </template>
 
 <script setup>
 import { ref } from "vue";
-   import Vegies from "../assets/vegetables.jpg"
+import Vegies from "../assets/vegetables.jpg"
     
   const count = ref(1);
   const price = ref(120)
@@ -90,13 +85,8 @@ import { ref } from "vue";
        price.value =count.value * 120;
    }
    
-   
-   const decrement = ()=>{
-
-     count.value > 1 ? (count.value-=1, price.value -= 120) : count.value;
-     
-   }
-
+   const decrement = ()=> count.value > 1 ? (count.value-=1, price.value -= 120) : count.value;
+  
    const orderConfirm = () =>{
     alert(`Order placed successfully. Count: ${count.value}`);
    }

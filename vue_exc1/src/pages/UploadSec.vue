@@ -1,6 +1,6 @@
 <style scoped>
 .sec{
- display: flex;
+  display: flex;
  align-items: center;
  justify-content: center;
  margin-top:120px;
@@ -20,8 +20,7 @@
 }
 .nothing{
     display: flex;
-    justify-content: center;
-    
+    justify-content: center; 
 }
 h3{
   font-size:40px;
@@ -44,7 +43,6 @@ h3{
   >
     <el-icon><Plus /></el-icon>
   </el-upload>
-
   <el-button @click="goToDisplayPage" class="nav-btn">Go to Display Page</el-button>
   </div>
 </template>
@@ -52,30 +50,22 @@ h3{
 <script setup>
 import { Plus } from '@element-plus/icons-vue';
 import { useDataStore } from "@/pinia/index.js";
-
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-  
-const handleUpload = (file) => {
-     
+const handleUpload = (file) => {   
   let imageInfo = {
         id:Math.floor(Math.random() * 1000),
         name: file.name,
         type: file.type,
         size: file.size,
-    };
-     
+    }; 
       const reader = new FileReader();
       reader.onload = (e) => {
         imageInfo.url = e.target.result
         const dataStore = useDataStore();
-        dataStore.setImages(imageInfo);
-        
-        // storeData.setData(e.target.result);
-     
-
+        dataStore.setImages(imageInfo)
       };
       reader.readAsDataURL(file.raw);
       alert("image uploaded successfully")
@@ -86,6 +76,4 @@ const beforeUpload = () =>{
 const goToDisplayPage = () =>{
       router.push('/display');
     }
-
-
 </script>

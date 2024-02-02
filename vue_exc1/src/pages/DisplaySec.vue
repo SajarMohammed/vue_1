@@ -1,4 +1,3 @@
-
  <template>
     <div v-if="dataStore.uploadedImg && dataStore.uploadedImg.length > 0" class="image-sec">
   <div v-for="image in dataStore.uploadedImg" :key="image.url" class="image-card">
@@ -27,7 +26,6 @@ const downloadable = (url)=>{
     a.click();
     document.body.removeChild(a);
 }
-
 </script>
 
 <style scoped> 
@@ -72,7 +70,6 @@ button{
 .nothing{
     display: flex;
     justify-content: center;
-    
 }
 h3{
   font-size:40px;

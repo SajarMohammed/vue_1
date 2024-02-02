@@ -4,29 +4,23 @@ import ElementPlus from "element-plus"
 import 'element-plus/dist/index.css'
 import App from './App.vue';
 import Home from "./pages/Home.vue"
-import Contact from "./pages/Contact.vue"
-import About from "./pages/About.vue"
-import ProductPage from "./pages/ProductPage.vue"
-import SingleProduct from "./pages/SingleProduct.vue"
-import DisplaySec from "./pages/DisplaySec.vue"
-import UploadSec from "./pages/UploadSec.vue"
 import { createPinia } from 'pinia';
 import "./main.css"
 
 const routes = [{
     path:"/" , component: Home 
 },{
-    path:"/about" , component: About 
+    path:"/about" , component: ()=> import("./pages/About.vue")
 },{
-    path:"/product" , component: ProductPage 
+    path:"/product" , component: ()=> import("./pages/ProductPage.vue") 
 },{
-    path:"/product/:id" , component: SingleProduct 
+    path:"/product/:id" , component: ()=> import("./pages/SingleProduct.vue") 
 },{
-    path:"/contact" , component: Contact 
+    path:"/contact" , component: ()=> import("./pages/Contact.vue") 
 },{
-    path:"/upload" , component: UploadSec 
+    path:"/upload" , component: ()=> import("./pages/UploadSec.vue") 
 },{
-    path:"/display" , component: DisplaySec 
+    path:"/display" , component: ()=> import("./pages/DisplaySec.vue") 
 },
 ]
 

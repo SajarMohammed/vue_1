@@ -13,7 +13,6 @@
  }
  .input-area{
     display: flex;
-    /* / flex-direction: column; / */
     margin:10px auto;
     width: fit-content;
  }
@@ -24,14 +23,12 @@
     align-items: center;
     justify-content: flex-end;
     gap: 8px;
-    
   }
   label{
     font-weight: bold;
     font-family: 'Courier New', Courier, monospace;
     letter-spacing: 2px;
   }
-
  .inp{ 
   width:150px;
   height: 30px;
@@ -49,8 +46,6 @@
   margin: 10px auto;
   gap:20px
  }
-
- 
  .radio-field{
   display: flex;
   align-items: center;
@@ -67,9 +62,7 @@
   width: fit-content;
   margin: 5px auto;
   gap:20px;
-  
  }
-
  .text-area{
    margin: 15px 60px;
     display: flex;
@@ -106,11 +99,9 @@
   <div class="main">
     <div class="input-section">
       <el-form>
-        
         <div class="input-area">
           <div class="each-input">
-            <label for="input1">Name :</label>
-            
+            <label for="input1">Name :</label>   
             <el-input v-model="formData.input" placeholder="Name..." clearable class="inp" id="input1" />
              <span v-for="error in v$.input.$errors" :key="error.$uid" class="error">
             {{ error.$message }}</span>
@@ -122,12 +113,9 @@
             {{ error.$message }}</span>
           </div>
         </div>
-
         <div class="radio-field">
           <div class="my-2 flex justify-center items-center text-sm">
-          
-            <el-radio-group v-model="formData.radio2" class="ml-4" size="large"> 
-              
+            <el-radio-group v-model="formData.radio2" class="ml-4" size="large">  
               <el-radio-button label="male">Male</el-radio-button>
               <el-radio-button label="female">Female</el-radio-button>
             </el-radio-group>
@@ -135,7 +123,6 @@
             {{ error.$message }}</span>
           </div>
         </div>
-
         <div class="text-area">
           <label for="textarea1">Address :</label>
           <el-input
@@ -149,7 +136,6 @@
           <span v-for="error in v$.textarea2.$errors" :key="error.$uid" class="error">
             {{ error.$message }}</span>
         </div>
-
         <div class="select-field">
           <label>Country : </label>
           <el-select v-model="formData.value" class="m-2 slct" placeholder="select">
@@ -164,14 +150,11 @@
           <span v-for="error in v$.value.$errors" :key="error.$uid" class="error">
             {{ error.$message }}</span>
         </div>
-
         <div class="form-actions">
           <el-button @click="submitForm" class="btn">Submit</el-button>
         </div>
-        
       </el-form>
     </div>
-
     <div class="table-section">
       <el-table :data="tableData" height="250" style="width: 100%">
         <el-table-column prop="id" label="id" />
@@ -190,7 +173,6 @@
     </div>
     <el-dialog v-model="editModalVisible" title="Edit Entry">
       <el-form ref="editForm">
-
         <el-form-item label="Name" prop="name">
           <el-input v-model="editFormData.name"></el-input>
         </el-form-item>
@@ -223,25 +205,10 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { required } from '@vuelidate/validators';
-
 import useVuelidate from "@vuelidate/core"
-
 
 const editModalVisible = ref(false);
 const editFormData = ref({});
-
-
-
-// const editFormRef = ref(null);
-
-
-// const editRules = {
-//   input : {required},
-//   val : {required},
-//   radio2 : { required },
-//   textarea2 : { required },
-//   value : { required },
-// };
 
 const formData = reactive({
   input:"",
@@ -250,6 +217,7 @@ const formData = reactive({
   textarea2:"",
   value:"",
 })
+
 const rules = {
   input : {required},
   val : {required},
@@ -259,11 +227,6 @@ const rules = {
 }
 
 const v$ = useVuelidate(rules, formData)
-// const input = ref('');
-// const val = ref('');
-// const textarea2 = ref('');
-// const radio2 = ref('');
-// const value = ref('');
 
 const options = [
   { label: 'India', value: 'India' },
@@ -274,13 +237,10 @@ const options = [
 
 const tableData = ref([]);
 
-
 const closeEditModal = () => {
   editFormData.value = {};
   editModalVisible.value = false;
 };
-
-
 
 const editRow = (row) => {  
   editFormData.value = { ...row };
@@ -293,24 +253,17 @@ const removeRow = (row) => {
 };
 
 const saveChanges = () => {
-  // Find the index of the row being edited by its ID
   const index = tableData.value.findIndex(row => row.id === editFormData.value.id);
-
-  // Replace the existing row with the changes
   if (index !== -1) {
-    // Update the properties of the found row
     tableData.value[index].name = editFormData.value.name;
     tableData.value[index].username = editFormData.value.username;
     tableData.value[index].gender = editFormData.value.gender;
     tableData.value[index].address = editFormData.value.address;
     tableData.value[index].country = editFormData.value.country;
   }
-
-  // Clear the form data and hide the edit modal
   editFormData.value = {};
   editModalVisible.value = false;
 };
-
 function generateRandomId() {
   const randomNumber = Math.floor(Math.random() * 1000000);
   const randomString = randomNumber.toString();
@@ -321,9 +274,7 @@ function generateRandomId() {
 
 const submitForm = async() => {
      const result = await v$.value.$validate();
-     
      if(result){
-  
        tableData.value.push({
         id:generateRandomId(),
         name: formData.input,
@@ -337,15 +288,7 @@ const submitForm = async() => {
     formData.textarea2 = '';
     formData.radio2 = '';
     formData.value = '';
-
-  
-
-    // this.v$.$reset();
     v$.value.$reset();
-
-    
      }
-
-    
 }
 </script>

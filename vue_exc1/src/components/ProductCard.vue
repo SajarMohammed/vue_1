@@ -1,14 +1,10 @@
 <template>
     <div class="product-card">
-      
         <h2 class="head-tag">{{ product.name }}</h2>
         <p>{{ product.desc }}</p>
         <span>${{ product.price }}</span>
   <router-link :to="'/product/' + product.id">      
-    <button  
-    @click="handleClick"
-    >Click me</button> 
-       </router-link>
+    <button  @click="handleClick" >Click me</button></router-link>
     </div>
 </template>
 
@@ -42,6 +38,5 @@
    }
    span{
     color:red;
-   
    }
 </style>

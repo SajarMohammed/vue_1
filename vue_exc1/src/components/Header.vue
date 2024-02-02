@@ -2,42 +2,28 @@
 .main {
   background-color: grey;
 }
-
 .head {
-  padding: 0; /* Reset padding for the header */
+  padding: 0; 
 }
-/* .log{
-    display: flex;
-} */
-
 .logo {
-    /* flex: 1; */
   padding: 10px ;
   color: white;
   font-size: 20px;
   margin: 10px 39px;
 }
-
 .list {
   text-align: center;
   padding: 10px 10px;
   margin:10px 0px 10px 50px;
-   /* flex: 1; */
-  
-   
 }
 .custom-links{
     text-decoration: none;
 }
-
 .titles {
   color: white;
- 
-  /* Add any other styles as needed */
 }
 </style>
 <template>
-    
     <el-container class="main">
         <el-header class="head">
             <el-row >

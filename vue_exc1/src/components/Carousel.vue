@@ -9,9 +9,7 @@
 <template>
     <el-carousel :interval="4000" type="card" height="500px">
       <el-carousel-item v-for="item in data" :key="item.id">
-       
         <img :src="item.img" alt="vegetable"  class="caros-img"/>
-    
       </el-carousel-item>
     </el-carousel>
   </template>

@@ -3,12 +3,11 @@
     <ProductCard v-for="product in products" :product="product" :key="product.id"
     @cardClick="handleClick"/>
   </div>
-
 </template>
 
 <script setup>
 import { ref } from "vue"
-  import ProductCard from "./ProductCard.vue"
+import ProductCard from "./ProductCard.vue"
   const products = ref([
     {id:1,name:"Apple",desc:"Apples are good to health",price:100},
     {id:2,name:"Orange",desc:"Orange are acidic in nature",price:180},

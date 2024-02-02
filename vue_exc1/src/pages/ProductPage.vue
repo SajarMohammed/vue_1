@@ -1,5 +1,5 @@
 <template>
-    <h4>We Offer Products that are Fresh and Flesh...!!</h4>
+    <h4>We Offer Products that are Fresh and Flesh...</h4>
     <Product/>
 </template>
 

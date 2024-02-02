@@ -1,5 +1,4 @@
 export default function Categories(){
-     
             return{
               items: [
                 { id:1, name:"Fresh Fruits", desc:"Fresh Fruits are very good" },
@@ -10,6 +9,4 @@ export default function Categories(){
                 { id:6, name:"Tasty Shakes", desc:"Share Memories with good shakes"  },
               ],
             };
-        
-     
 };
