@@ -1,6 +1,8 @@
 <template>
    <Carousel/>
-   <h1>We Deliever Better Food...!!</h1>
+   <div>
+   <h1>We Deliever Better Food...!!</h1>    
+   </div>
 </template>
 <script setup> 
     import Carousel from "@/components/Carousel.vue"
