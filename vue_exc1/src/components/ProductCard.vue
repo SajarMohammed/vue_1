@@ -4,7 +4,7 @@
         <p>{{ product.desc }}</p>
         <span>${{ product.price }}</span>
   <router-link :to="'/product/' + product.id">      
-    <button  @click="handleClick" >Click me</button></router-link>
+    <button @click="handleClick" >Click me</button></router-link>
     </div>
 </template>
 
